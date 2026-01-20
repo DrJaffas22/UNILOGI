@@ -1,5 +1,5 @@
 _avialableVariants = [
-					  "UNILOGI Modern"
+					  "UNILOGI"
 					 ];
 
 _avialableVariants
