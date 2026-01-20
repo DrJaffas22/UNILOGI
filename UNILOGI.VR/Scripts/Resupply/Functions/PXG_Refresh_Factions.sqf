@@ -1,15 +1,4 @@
-_selectedSide = lbCurSel 451504;
-
-_factionsScriptPath = "Scripts\Factions\PXG_Available_Factions_";
-
-_side = switch (_selectedSide) do {
-		case 0: {"Blue.sqf"};
-		case 1: {"Opfor.sqf"};
-		case 2: {"Indep.sqf"};
-		default { };
-};
-
-_factionsScriptPath = _factionsScriptPath + _side;
+_factionsScriptPath = "Scripts\Factions\GetFactionFromId.sqf";
 
 _factionsArray = call compile preprocessfile _factionsScriptPath;
 
