@@ -14,11 +14,14 @@ _faction = (_uniFactionArray select 1); // sets the _faction variable to the out
 
 _uniFactionRaw = missionNamespace getVariable "Jaff_UNIFACTION";
 
-_uniFactionArray = (parseSimpleArray str _uniFactionRaw); // converts the return from formatted sting into an array 
-_faction = (_uniFactionArray select 1)select 0 select 0; // sets the _faction variable to the output of the call 
-publicVariable _uniFactionArray;
+//_uniFactionArray = (parseSimpleArray str _uniFactionRaw); // converts the return from formatted sting into an array 
+//_faction = (_uniFactionArray select 1)select 0 select 0; // sets the _faction variable to the output of the call 
 
-publicVariable _faction;
+
+_faction = (_uniFactionRaw select 1)select 0 select 0; // sets the _faction variable to the output of the call 
+//publicVariable _uniFactionArray;
+
+//publicVariable _faction;
 
 
 _availableFactions = [str _faction];
