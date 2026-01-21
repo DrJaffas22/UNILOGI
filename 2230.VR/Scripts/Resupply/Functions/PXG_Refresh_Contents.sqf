@@ -29,7 +29,7 @@ switch (lbData [451502, _indexSupplies]) do
 	case "Wheel";
 	case "Track": {_suppliesContents = [[],[]]};
 	default {
-		_suppliesContents = _suppliesArray select _indexSupplies select 1;
+		_suppliesContents = _suppliesArray select _indexSupplies select 2;
 		
 		{
 			_suppliesName = _suppliesContents select _forEachIndex select 0;

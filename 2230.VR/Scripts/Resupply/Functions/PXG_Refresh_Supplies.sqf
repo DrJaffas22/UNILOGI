@@ -24,9 +24,13 @@ _suppliesArray = call compile preprocessfile _suppliesScriptPath;
 lbClear 451502;
 
 {
+	//Set supplies list with data for box
     _suppliesText = _suppliesArray select _forEachIndex select 0;
-	_supplyData = lbAdd [451502, _suppliesText];
-	lbSetData [451502, _supplyData, _suppliesText];
+	_suppliesData = _suppliesArray select _forEachIndex select 1;
+	if (_suppliesData != "NONE") then {
+		_suppliesCurrent = lbAdd [451502, _suppliesText];
+		lbSetData [451502, _suppliesCurrent, _suppliesData];
+	}
 }	forEach _suppliesArray;
 
 _wheelSupply = lbAdd [451502, "Spare Wheel"];

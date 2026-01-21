@@ -16,8 +16,11 @@ _suppliesScriptPath = _suppliesScriptPath + _faction +"\supplies_" + _variantTyp
 
 _suppliesArray = call compile preprocessfile _suppliesScriptPath;
 
-_suppliesContent = _suppliesArray select _indexSupplies select 1;
+//Filter supplies from GUI data
+_suppliesContent = _suppliesArray select _indexSupplies select 2;
 _suppliesName = _suppliesArray select _indexSupplies select 0;
+
+
 
 if (_suppliesName == "Crocus") then {
 	{

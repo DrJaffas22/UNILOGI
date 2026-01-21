@@ -1,10 +1,10 @@
 _resupplyAvailable = [
-	["Hand Grenades, Lethal & Non-Lethal",
+	["Hand Grenades, Lethal & Non-Lethal","Box_UNICrate_Grenades_Green_F",
 		[
 			["vn_m61_grenade_mag",25]
 		]
 	],
-	["Signal Flares, Hand Smokes & Chemlights",
+	["Signal Flares, Hand Smokes & Chemlights","Box_UNICrate_Grenades_Green_F",
 		[
 			["SmokeShell",25],
 			["SmokeShellYellow",5],
@@ -16,7 +16,7 @@ _resupplyAvailable = [
 			["ACE_HandFlare_Green",5]
 		]
 	],
-	["UGL Smoke & Lethal rounds",
+	["UGL Smoke & Lethal rounds","Box_UNICrate_Grenades_Green_F",
 		[
 			["vn_40mm_m381_he_mag",30],
 			["vn_40mm_m433_hedp_mag",20],

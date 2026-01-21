@@ -1,5 +1,5 @@
 _resupplyAvailable = [
-	["MERT/CMT Resupply",
+	["MERT/CMT Resupply","Box_UNICrate_Medical_Green_F", 
 		[
 			["kat_Painkiller", 20],
 			["kat_Carbonate", 10],
@@ -21,7 +21,7 @@ _resupplyAvailable = [
 			["ACE_elasticBandage", 100]
 		]
 	],
-	["Platoon Med Resupply",
+	["Platoon Med Resupply","Box_UNICrate_Medical_Green_F", 
 		[
 			["kat_Carbonate", 20],
 			["kat_Painkiller", 20],
@@ -43,7 +43,7 @@ _resupplyAvailable = [
 			["ACE_tourniquet", 50]
 		]
 	],
-	["Squad Med Resupply",
+	["Squad Med Resupply","Box_UNICrate_Medical_Green_F", 
 		[
 			["kat_Carbonate", 10],
 			["kat_Painkiller", 30],
@@ -66,7 +66,7 @@ _resupplyAvailable = [
 			["kat_guedel", 15]
 		]
 	],
-	["CCP Resupply",
+	["CCP Resupply","Box_UNICrate_Medical_Green_F", 
 		[
 			["kat_Carbonate", 20],
 			["kat_Painkiller", 20],
@@ -88,7 +88,7 @@ _resupplyAvailable = [
 			["ACE_tourniquet", 50]
 		]
 	],
-	["Bodybags",
+	["Bodybags","Box_UNICrate_Medical_Green_F", 
 		[
 			["ACE_bodyBag", 20]
 		]
