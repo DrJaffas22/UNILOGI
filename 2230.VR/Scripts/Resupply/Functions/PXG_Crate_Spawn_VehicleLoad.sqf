@@ -2,7 +2,7 @@ params["_supplyData","_crateType","_crateCargoSize","_vehicleLoad","_spawnPositi
 
 
 private _crate = createVehicle[_crateType, [3000,3000,3000], [], 0, "CAN_COLLIDE"];
-_crate setDir getDir _spawnPosition;
+
 _crate addEventHandler ["HandleDamage", {0}];
 _crate allowDamage false;
 _crate setDamage 0;
