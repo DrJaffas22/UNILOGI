@@ -10,7 +10,11 @@ if (count _indexFaction == 1) exitWith { hint "Please select faction variant."};
 if (_indexSupply == -1) exitWith { hint "Please select supply crate."};
 if (_indexSpawn == -1) exitWith {hint "Please select spawn point."};
 
-_spawnPosition = synchronizedObjects (player getVariable "PXG_Resupply_Master") select _indexSpawn;
+//_spawnPosition = synchronizedObjects (player getVariable "PXG_Resupply_Master") select _indexSpawn;
+
+_spawnMarker = lbText [451500,_indexSpawn];
+//Spawn postion with elevation PositionAGL
+_spawnPosition = getMarkerPos [_spawnMarker, true];
 
 player setVariable ["PXG_Resupply_Memory_Side", _indexSide];
 player setVariable ["PXG_Resupply_Memory_Faction", _indexFaction];
@@ -18,8 +22,12 @@ player setVariable ["PXG_Resupply_Memory_Supply", _indexSupply];
 player setVariable ["PXG_Resupply_Memory_Spawn", _indexSpawn];
 
 //Check for vehicles in radius of spawnpoint
+/* Position for synced objects
 private _nearVehicles = nearestObjects [getPos _spawnPosition, ["LandVehicle", "Air", "Ship", "Slingload_base_F"], 5];
 _nearVehicles = _nearVehicles + nearestObjects [getPos _spawnPosition, ["Reammobox_F"], 1];
+*/
+private _nearVehicles = nearestObjects [_spawnPosition, ["LandVehicle", "Air", "Ship", "Slingload_base_F"], 5];
+
 
 if (count _nearVehicles > 0) then {
 	
@@ -32,7 +40,6 @@ if (count _nearVehicles > 0) then {
 			if (((_vehicle getVariable "ace_cargo_space") - 1) >= 0) then {
 				
 				private _wheel = createVehicle["ACE_Wheel", [3000,3000,3000], [], 0, "CAN_COLLIDE"];
-				_wheel setDir getDir _spawnPosition;
 				
 				[_wheel, _vehicle, true] call ace_cargo_fnc_loadItem;
 				
@@ -46,7 +53,6 @@ if (count _nearVehicles > 0) then {
 			if (((_vehicle getVariable "ace_cargo_space") - 2) >= 0) then {
 			
 				private _track = createVehicle["ACE_Track", [3000,3000,3000], [], 0, "CAN_COLLIDE"];
-				_track setDir getDir _spawnPosition;
 				
 				[_track, _vehicle, true] call ace_cargo_fnc_loadItem;
 				
@@ -197,19 +203,16 @@ if (count _nearVehicles > 0) then {
 	
 	
 	case "Wheel": {
-		private _wheel = createVehicle["ACE_Wheel", getPosATL _spawnPosition, [], 0, "CAN_COLLIDE"];
-		_wheel setDir getDir _spawnPosition;
+		private _wheel = createVehicle["ACE_Wheel", _spawnPosition, [], 0, "CAN_COLLIDE"];
 	};
 
 	case "Track": {
-		private _track = createVehicle["ACE_Track", getPosATL _spawnPosition, [], 0, "CAN_COLLIDE"];
-		_track setDir getDir _spawnPosition;
+		private _track = createVehicle["ACE_Track", _spawnPosition, [], 0, "CAN_COLLIDE"];
 	};
 
 	case "Parachutes":
 	{
-		private _crate = createVehicle["Box_UNICrate_CargoNet_Green_F", getPosATL _spawnPosition, [], 0, "CAN_COLLIDE"];
-		_crate setDir getDir _spawnPosition;
+		private _crate = createVehicle["Box_UNICrate_CargoNet_Green_F", _spawnPosition, [], 0, "CAN_COLLIDE"];
 		_crate addEventHandler ["HandleDamage", {0}];
 		_crate allowDamage false;
 		_crate setDamage 0;
@@ -230,8 +233,7 @@ if (count _nearVehicles > 0) then {
 	case "Flare Launchers";
 	case "CBRN equipment and supplies, 15 kits":
 	{
-		private _crate = createVehicle["Box_UNICrate_Equip_Green_F", getPosATL _spawnPosition, [], 0, "CAN_COLLIDE"];
-		_crate setDir getDir _spawnPosition;
+		private _crate = createVehicle["Box_UNICrate_Equip_Green_F", _spawnPosition, [], 0, "CAN_COLLIDE"];
 		_crate addEventHandler ["HandleDamage", {0}];
 		_crate allowDamage false;
 		_crate setDamage 0;
@@ -251,8 +253,7 @@ if (count _nearVehicles > 0) then {
 	case "Remote detonation explosives";
 	case "Mines & enemy triggered explosives":
 	{
-		private _crate = createVehicle["Box_UNICrate_AmmoOrd_Green_F", getPosATL _spawnPosition, [], 0, "CAN_COLLIDE"];
-		_crate setDir getDir _spawnPosition;
+		private _crate = createVehicle["Box_UNICrate_AmmoOrd_Green_F", _spawnPosition, [], 0, "CAN_COLLIDE"];
 		_crate addEventHandler ["HandleDamage", {0}];
 		_crate allowDamage false;
 		_crate setDamage 0;
@@ -271,8 +272,7 @@ if (count _nearVehicles > 0) then {
 	case "Anti-Vehicle Disposable launchers";
 	case "Anti-Structure Disposable launchers":
 	{
-		private _crate = createVehicle["Box_UNICrate_WpsdispLaunch_Green_F", getPosATL _spawnPosition, [], 0, "CAN_COLLIDE"];
-		_crate setDir getDir _spawnPosition;
+		private _crate = createVehicle["Box_UNICrate_WpsdispLaunch_Green_F", _spawnPosition, [], 0, "CAN_COLLIDE"];
 		_crate addEventHandler ["HandleDamage", {0}];
 		_crate allowDamage false;
 		_crate setDamage 0;
@@ -290,8 +290,7 @@ if (count _nearVehicles > 0) then {
 
 	case "Medium AT rounds & accessories":
 	{
-		private _crate = createVehicle["Box_UNICrate_WpsMediumLaunch_Green_F", getPosATL _spawnPosition, [], 0, "CAN_COLLIDE"];
-		_crate setDir getDir _spawnPosition;
+		private _crate = createVehicle["Box_UNICrate_WpsMediumLaunch_Green_F", _spawnPosition, [], 0, "CAN_COLLIDE"];
 		_crate addEventHandler ["HandleDamage", {0}];
 		_crate allowDamage false;
 		_crate setDamage 0;
@@ -309,8 +308,7 @@ if (count _nearVehicles > 0) then {
 
 	case "Heavy AT rounds & accessories":
 	{
-		private _crate = createVehicle["Box_UNICrate_WpsHeavyLaunch_Green_F", getPosATL _spawnPosition, [], 0, "CAN_COLLIDE"];
-		_crate setDir getDir _spawnPosition;
+		private _crate = createVehicle["Box_UNICrate_WpsHeavyLaunch_Green_F", _spawnPosition, [], 0, "CAN_COLLIDE"];
 		_crate addEventHandler ["HandleDamage", {0}];
 		_crate allowDamage false;
 		_crate setDamage 0;
@@ -330,8 +328,7 @@ if (count _nearVehicles > 0) then {
 	case "MANPAD Anti Air rounds";
 	case "MANPAD Anti Air Disposable Launchers":
 	{
-		private _crate = createVehicle["Box_UNICrate_WpsAALaunch_Green_F", getPosATL _spawnPosition, [], 0, "CAN_COLLIDE"];
-		_crate setDir getDir _spawnPosition;
+		private _crate = createVehicle["Box_UNICrate_WpsAALaunch_Green_F", _spawnPosition, [], 0, "CAN_COLLIDE"];
 		_crate addEventHandler ["HandleDamage", {0}];
 		_crate allowDamage false;
 		_crate setDamage 0;
@@ -354,8 +351,7 @@ if (count _nearVehicles > 0) then {
 	case "Platoon Med Resupply";	
 	case "MERT/CMT Resupply":
 	{
-		private _crate = createVehicle["Box_UNICrate_Medical_Green_F", getPosATL _spawnPosition, [], 0, "CAN_COLLIDE"];
-		_crate setDir getDir _spawnPosition;
+		private _crate = createVehicle["Box_UNICrate_Medical_Green_F", _spawnPosition, [], 0, "CAN_COLLIDE"];
 		_crate addEventHandler ["HandleDamage", {0}];
 		_crate allowDamage false;
 		_crate setDamage 0;
@@ -382,8 +378,7 @@ if (count _nearVehicles > 0) then {
 	case "Infantry Medium Machine Gun";
 	case "Infantry Standard Ammo":
 	{
-		private _crate = createVehicle["Box_UNICrate_Ammo_Green_F", getPosATL _spawnPosition, [], 0, "CAN_COLLIDE"];
-		_crate setDir getDir _spawnPosition;
+		private _crate = createVehicle["Box_UNICrate_Ammo_Green_F", _spawnPosition, [], 0, "CAN_COLLIDE"];
 		_crate addEventHandler ["HandleDamage", {0}];
 		_crate allowDamage false;
 		_crate setDamage 0;
@@ -404,8 +399,7 @@ if (count _nearVehicles > 0) then {
 	case "Signal Flares, Hand Smokes & Chemlights";
 	case "Hand Grenades, Lethal & Non-Lethal":
 	{
-		private _crate = createVehicle["Box_UNICrate_Grenades_Green_F", getPosATL _spawnPosition, [], 0, "CAN_COLLIDE"];
-		_crate setDir getDir _spawnPosition;
+		private _crate = createVehicle["Box_UNICrate_Grenades_Green_F", _spawnPosition, [], 0, "CAN_COLLIDE"];
 		_crate addEventHandler ["HandleDamage", {0}];
 		_crate allowDamage false;
 		_crate setDamage 0;
@@ -424,8 +418,7 @@ if (count _nearVehicles > 0) then {
 
 
 	default {
-		private _crate = createVehicle["Box_UNICrate_Equip_Green_F", getPosATL _spawnPosition, [], 0, "CAN_COLLIDE"];
-		_crate setDir getDir _spawnPosition;
+		private _crate = createVehicle["Box_UNICrate_Equip_Green_F", _spawnPosition, [], 0, "CAN_COLLIDE"];
 		_crate addEventHandler ["HandleDamage", {0}];
 		_crate allowDamage false;
 		_crate setDamage 0;
